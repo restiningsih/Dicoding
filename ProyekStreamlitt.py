@@ -65,7 +65,6 @@ elif menu_utama =='Dataset Gabungan :dna: ':
 elif menu_utama == 'Visualisasi Data :bar_chart:':
     st.subheader('Visualisasi Data')
     
-    # Pastikan variabel sewa_sepeda dapat diakses di blok ini
     sewa_sepeda = pd.merge(
         left=hari,
         right=jam,
@@ -73,14 +72,13 @@ elif menu_utama == 'Visualisasi Data :bar_chart:':
         left_on="season",
         right_on="hr"
     )
-    
     st.write("Bar Chart")
     sns.barplot(x='season_x', y='cnt_y', data=sewa_sepeda)
-    st.pyplot()  # Menyertakan gambar yang dihasilkan oleh sns.barplot()
+    st.pyplot()
 
     st.write('Gambar di atas merupakan gambar bar plot yang menampilkan tingkat sewa sepeda setiap musimnya. Musim 1 adalah musim yang paling banyak orang menggunakan jasa sewa sepeda')
 
     st.write("Line Chart")
     jumlah_sewa = sewa_sepeda.groupby('mnth_x')['cnt_y'].sum()
     jumlah_sewa.plot(kind='line')
-    st.pyplot()  # Menyertakan gambar yang dihasilkan oleh jumlah_sewa.plot()
+    st.pyplot() 
