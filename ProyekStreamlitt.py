@@ -2,11 +2,12 @@ import streamlit as st
 import pandas as pd
 import seaborn as sns
 
-hari_url = 'https://github.com/restiningsih/Dicoding/raw/main/day.csv' 
-jam_url = 'https://github.com/restiningsih/Dicoding/raw/main/hour.csv'  
+# Load data
+GitD = 'https://github.com/restiningsih/Dicoding/raw/main/day.csv'
+GitH = 'https://github.com/restiningsih/Dicoding/raw/main/hour.csv'
 
-hari = pd.read_csv(hari_url)
-jam = pd.read_csv(jam_url)
+hari = pd.read_csv(GitD)
+jam = pd.read_csv(GitH)
 
 st.sidebar.title('Proyek Streamlit :turkey: ')
 menu_utama = st.sidebar.radio('Menu Navigasi:', ('Dataset Hari :calendar: ', 'Dataset Jam :clock1: ', 'Dataset Gabungan :dna: ', 'Visualisasi Data :bar_chart:'))
@@ -63,20 +64,15 @@ elif menu_utama =='Dataset Gabungan :dna: ':
 
 elif menu_utama == 'Visualisasi Data :bar_chart:':
     st.subheader('Visualisasi Data')
-
+    
+    # Pastikan variabel sewa_sepeda dapat diakses di blok ini
+    sewa_sepeda = pd.merge(
+        left=hari,
+        right=jam,
+        how="left",
+        left_on="season",
+        right_on="hr"
+    )
+    
     st.write("Bar Chart")
-    sns.barplot(x='season_x', y='cnt_y', data=sewa_sepeda)
-    plt.xlabel("Musim ke-")
-    plt.ylabel("Total Sewa Sepeda")
-    st.pyplot()
-
-    st.write('Gambar di atas merupakan gambar bar plot yang menampilkan tingkat sewa sepeda setiap musimnya. Musim 1 adalah musim yang paling banyak orang menggunakan jasa sewa sepeda')
-
-    st.write("Line Chart")
-    jumlah_sewa = sewa_sepeda.groupby('mnth_x')['cnt_y'].sum()
-    plt.xlabel("Bulan ke-")
-    plt.ylabel("Tingkat penyewaan sepeda")
-    jumlah_sewa.plot(kind='line')
-    st.pyplot()
-
-    st.write('Gambar di atas merupakan line chart yang menampilkan kondisi bisnis sewa sepeda setiap bulannya. Dapat dilihat bahwa kondisinya cenderung menurun, dan titik terendahnya berada di bulan 11.')
+    sns.barplot(x='season_x', y='cnt_y', d
