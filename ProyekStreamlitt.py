@@ -74,15 +74,13 @@ elif menu_utama == 'Visualisasi Data :bar_chart:':
         right_on="hr"
     )
     
-st.write("Bar Chart")
-sns.barplot(x='season_x', y='cnt_y', data=sewa_sepeda)
-st.pyplot()  # Menyertakan gambar yang dihasilkan oleh sns.barplot()
+    st.write("Bar Chart")
+    sns.barplot(x='season_x', y='cnt_y', data=sewa_sepeda)
+    st.pyplot()  # Menyertakan gambar yang dihasilkan oleh sns.barplot()
 
-st.write('Gambar di atas merupakan gambar bar plot yang menampilkan tingkat sewa sepeda setiap musimnya. Musim 1 adalah musim yang paling banyak orang menggunakan jasa sewa sepeda')
+    st.write('Gambar di atas merupakan gambar bar plot yang menampilkan tingkat sewa sepeda setiap musimnya. Musim 1 adalah musim yang paling banyak orang menggunakan jasa sewa sepeda')
 
-st.write("Line Chart")
-jumlah_sewa = sewa_sepeda.groupby('mnth_x')['cnt_y'].sum()
-jumlah_sewa.plot(kind='line')
-st.pyplot()  # Menyertakan gambar yang dihasilkan oleh jumlah_sewa.plot()
-
- st.write('Gambar di atas merupakan line chart yang menampilkan kondisi bisnis sewa sepeda setiap bulannya. Dapat dilihat bahwa kondisinya cenderung menurun, dan titik terendahnya berada di bulan 11.')
+    st.write("Line Chart")
+    jumlah_sewa = sewa_sepeda.groupby('mnth_x')['cnt_y'].sum()
+    jumlah_sewa.plot(kind='line')
+    st.pyplot()  # Menyertakan gambar yang dihasilkan oleh jumlah_sewa.plot()
