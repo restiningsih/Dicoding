@@ -26,7 +26,8 @@ if menu_utama =='Dataset Hari :calendar: ':
     st.dataframe(df_min_max1)
 
     st.write("Histogram Jumlah Pengunjung perbulannya")
-    st.bar_chart(hari['cnt'])
+    sns.histplot(hari['cnt'], kde=True)
+    st.pyplot()
 
 elif menu_utama =='Dataset Jam :clock1: ':
     st.subheader('Dataset sewa sepeda (dalam jam)')
@@ -43,25 +44,26 @@ elif menu_utama =='Dataset Jam :clock1: ':
     st.dataframe(df_min_max2)
 
     st.write("Histogram Jumlah Pengunjung perjamnya")
-    st.bar_chart(jam['cnt'])
+    sns.histplot(jam['cnt'], kde=True)
+    st.pyplot()
        
 elif menu_utama == 'Visualisasi Data :bar_chart:':
     st.subheader('Visualisasi Data')
     
     st.write("Kondisi bisnis sepeda setiap musimnya")
-    fig1 = sns.barplot(x='season', y='cnt', data=hari)
-    st.pyplot(fig1) 
+    sns.barplot(x='season', y='cnt', data=hari)
+    st.pyplot() 
 
     st.write('Gambar di atas merupakan gambar bar plot yang menampilkan tingkat sewa sepeda setiap musimnya. Musim 3 adalah musim yang paling banyak orang menggunakan jasa sewa sepeda')
 
     st.write("Kondisi bisnis sepeda setiap bulannya")
-    fig2 = sns.barplot(x='mnth', y='cnt', data=hari)
-    st.pyplot(fig2)
+    sns.barplot(x='mnth', y='cnt', data=hari)
+    st.pyplot()
     
     st.write('Kondisi bisnis sewa sepeda dapat terlihat naik hingga bulan ke-6. Selanjutnya malah makin rendah ketika mencapai penghujung tahun.')
 
     st.write("Kondisi bisnis sepeda setiap jamnya")
-    fig3 = sns.barplot(x='hr', y='cnt', data=jam)
-    st.pyplot(fig3)
+    sns.barplot(x='hr', y='cnt', data=jam)
+    st.pyplot()
 
     st.write(" Kondisi bisnis sepeda cenderung ramai pada pukul 17 hingga 18 waktu setempat dan mencapai titik paling sepi di pukul 4 pagi.")
