@@ -12,10 +12,11 @@ jam = pd.read_csv(GitH)
 
 # Sidebar
 st.sidebar.title('Proyek Streamlit :turkey: ')
-menu_utama = st.sidebar.radio('Menu Navigasi:', ('Dataset Hari: ', 'Dataset Jam :clock1: ', 'Visualisasi Data :bar_chart:'))
+menu_utama = st.sidebar.radio('Menu Navigasi:', ('Dataset Hari :calendar: ', 'Dataset Jam :clock1: ', 'Visualisasi Data :bar_chart:'))
 
 # Handling pilihan menu
 if menu_utama =='Dataset Hari :calendar: ':
+    
     st.subheader('Dataset sewa sepeda (dalam hari)')
     st.dataframe(hari)
 
