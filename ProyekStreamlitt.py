@@ -30,6 +30,7 @@ if menu_utama =='Dataset Hari :calendar: ':
     st.write("Histogram Jumlah Pengunjung perbulannya")
     sns.histplot(hari['cnt'], kde=True)
     st.pyplot()
+    st.write("Histogram di atas menunjukkan rata-rata penyewa sepeda pada day.csv. Artinya, setiap harinya, bisnis sepeda hampir didominasi sebanyak ~4000 penyewa. Histogram ini termasuk histogram yang memiliki central tendency yang berada di tengah.")
 
 elif menu_utama =='Dataset Jam :clock1: ':
     st.subheader('Dataset sewa sepeda (dalam jam)')
@@ -48,6 +49,7 @@ elif menu_utama =='Dataset Jam :clock1: ':
     st.write("Histogram Jumlah Pengunjung perjamnya")
     sns.histplot(jam['cnt'], kde=True)
     st.pyplot()
+    st.write("Histogram di atas menunjukkan rata-rata penyewa sepeda pada hour.csv. Artinya, setiap harinya, bisnis sepeda hampir didominasi sebanyak 100-200 penyewa. Histogram ini termasuk histogram yang memiliki central tendency yang berada di sebelah kiri.")
        
 elif menu_utama == 'Visualisasi Data :bar_chart:':
     st.subheader('Visualisasi Data')
