@@ -2,15 +2,19 @@ import streamlit as st
 import pandas as pd
 import seaborn as sns
 
+# URL ke file CSV
 GitD = 'https://github.com/restiningsih/Dicoding/raw/main/day.csv'
 GitH = 'https://github.com/restiningsih/Dicoding/raw/main/hour.csv'
 
+# Baca data
 hari = pd.read_csv(GitD)
 jam = pd.read_csv(GitH)
 
+# Sidebar
 st.sidebar.title('Proyek Streamlit :turkey: ')
 menu_utama = st.sidebar.radio('Menu Navigasi:', ('Dataset Hari: ', 'Dataset Jam :clock1: ', 'Visualisasi Data :bar_chart:'))
 
+# Handling pilihan menu
 if menu_utama =='Dataset Hari :calendar: ':
     st.subheader('Dataset sewa sepeda (dalam hari)')
     st.dataframe(hari)
@@ -26,7 +30,8 @@ if menu_utama =='Dataset Hari :calendar: ':
     st.dataframe(df_min_max1)
 
     st.write("Histogram Jumlah Pengunjung perbulannya")
-    st.pyplot(hari['cnt'].hist())
+    sns.histplot(hari['cnt'], kde=True)
+    st.pyplot()
 
 elif menu_utama =='Dataset Jam :clock1: ':
     st.subheader('Dataset sewa sepeda (dalam jam)')
@@ -43,7 +48,8 @@ elif menu_utama =='Dataset Jam :clock1: ':
     st.dataframe(df_min_max2)
 
     st.write("Histogram Jumlah Pengunjung perjamnya")
-    st.pyplot(hari['cnt'].hist())
+    sns.histplot(jam['cnt'], kde=True)
+    st.pyplot()
        
 elif menu_utama == 'Visualisasi Data :bar_chart:':
     st.subheader('Visualisasi Data')
