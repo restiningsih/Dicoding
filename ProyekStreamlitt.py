@@ -2,7 +2,6 @@ import streamlit as st
 import pandas as pd
 import seaborn as sns
 
-# URL ke file CSV
 GitD = 'https://github.com/restiningsih/Dicoding/raw/main/day.csv'
 GitH = 'https://github.com/restiningsih/Dicoding/raw/main/hour.csv'
 
@@ -10,10 +9,9 @@ hari = pd.read_csv(GitD)
 jam = pd.read_csv(GitH)
 
 st.sidebar.title('Proyek Streamlit :turkey: ')
-menu_utama = st.sidebar.radio('Menu Navigasi:', ('Dataset Hari :calendar: ', 'Dataset Jam :clock1: ', 'Visualisasi Data :bar_chart:'))
+menu_utama = st.sidebar.radio('Menu Navigasi:', ('Dataset Hari: ', 'Dataset Jam :clock1: ', 'Visualisasi Data :bar_chart:'))
 
 if menu_utama =='Dataset Hari :calendar: ':
-    
     st.subheader('Dataset sewa sepeda (dalam hari)')
     st.dataframe(hari)
 
@@ -28,9 +26,7 @@ if menu_utama =='Dataset Hari :calendar: ':
     st.dataframe(df_min_max1)
 
     st.write("Histogram Jumlah Pengunjung perbulannya")
-    sns.histplot(hari['cnt'], kde=True)
-    st.pyplot()
-    st.write("Histogram di atas menunjukkan rata-rata penyewa sepeda pada day.csv. Artinya, setiap harinya, bisnis sepeda hampir didominasi sebanyak ~4000 penyewa. Histogram ini termasuk histogram yang memiliki central tendency yang berada di tengah.")
+    st.bar_chart(hari['cnt'])
 
 elif menu_utama =='Dataset Jam :clock1: ':
     st.subheader('Dataset sewa sepeda (dalam jam)')
@@ -47,27 +43,25 @@ elif menu_utama =='Dataset Jam :clock1: ':
     st.dataframe(df_min_max2)
 
     st.write("Histogram Jumlah Pengunjung perjamnya")
-    sns.histplot(jam['cnt'], kde=True)
-    st.pyplot()
-    st.write("Histogram di atas menunjukkan rata-rata penyewa sepeda pada hour.csv. Artinya, setiap harinya, bisnis sepeda hampir didominasi sebanyak 100-200 penyewa. Histogram ini termasuk histogram yang memiliki central tendency yang berada di sebelah kiri.")
+    st.bar_chart(jam['cnt'])
        
 elif menu_utama == 'Visualisasi Data :bar_chart:':
     st.subheader('Visualisasi Data')
     
     st.write("Kondisi bisnis sepeda setiap musimnya")
-    sns.barplot(x='season', y='cnt', data=hari)
-    st.pyplot() 
+    fig1 = sns.barplot(x='season', y='cnt', data=hari)
+    st.pyplot(fig1) 
 
     st.write('Gambar di atas merupakan gambar bar plot yang menampilkan tingkat sewa sepeda setiap musimnya. Musim 3 adalah musim yang paling banyak orang menggunakan jasa sewa sepeda')
 
     st.write("Kondisi bisnis sepeda setiap bulannya")
-    sns.barplot(x='mnth', y='cnt', data=hari)
-    st.pyplot()
+    fig2 = sns.barplot(x='mnth', y='cnt', data=hari)
+    st.pyplot(fig2)
     
     st.write('Kondisi bisnis sewa sepeda dapat terlihat naik hingga bulan ke-6. Selanjutnya malah makin rendah ketika mencapai penghujung tahun.')
 
     st.write("Kondisi bisnis sepeda setiap jamnya")
-    sns.barplot(x='hr', y='cnt', data=jam)
-    st.pyplot()
+    fig3 = sns.barplot(x='hr', y='cnt', data=jam)
+    st.pyplot(fig3)
 
     st.write(" Kondisi bisnis sepeda cenderung ramai pada pukul 17 hingga 18 waktu setempat dan mencapai titik paling sepi di pukul 4 pagi.")
